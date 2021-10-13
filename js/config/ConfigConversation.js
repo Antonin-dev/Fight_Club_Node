@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.configStart = void 0;
+exports.configStop = exports.configStart = void 0;
 exports.configStart = [
     /*
     * Configuration for begin the game
@@ -29,5 +29,15 @@ exports.configStart = [
         name: "confirm",
         type: "confirm",
         message: "Are you sure?",
+    }
+];
+exports.configStop = [
+    /*
+    * Configuration for stop the game
+    * */
+    {
+        name: "rest",
+        type: "confirm",
+        message: "Do you want to rest ?",
     }
 ];

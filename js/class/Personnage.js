@@ -39,6 +39,11 @@ var Personnage = /** @class */ (function () {
     Personnage.prototype.fight = function (value) {
         this._life -= value;
     };
+    Personnage.prototype.rest = function (life) {
+        this._life = this._life + 10;
+        var text = "tu as recuperer " + life + " de vie tu as " + this._life + " de sant\u00E9";
+        return text;
+    };
     return Personnage;
 }());
 exports.Personnage = Personnage;

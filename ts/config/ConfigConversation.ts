@@ -29,3 +29,14 @@ export const configStart = [
 
     }
 ]
+export const configStop = [
+    /*
+    * Configuration for stop the game
+    * */
+    {
+        name: "rest",
+        type: "confirm",
+        message: "Do you want to rest ?",
+
+    }
+    ]

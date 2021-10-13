@@ -27,6 +27,7 @@ var checkDisponibility = function () {
     }
 };
 checkDisponibility();
+// startGame with monsters
 var fight = function () {
     inquirer_1.default.prompt([
         {
@@ -40,8 +41,8 @@ var fight = function () {
         var monster2 = new Monster_1.Monster(monster[random2], strength);
         var monster3 = new Monster_1.Monster(monster[random3], strength);
         if (response.fight && personnage !== null) {
-            console.log("Ok " + personnage.name + " tu es un bon, choisissons ton enemies");
-            console.log("Autour de toi tu as plusieur enemies, fais le bon choix !");
+            console.log("Ok " + personnage.name + " you are the best, choose your target");
+            console.log("Around you you have several enemies, make the right choice!");
             inquirer_1.default.prompt([
                 {
                     name: "monster",
@@ -58,18 +59,21 @@ var fight = function () {
                 switch (response.monster) {
                     case monster1.name:
                         personnage === null || personnage === void 0 ? void 0 : personnage.fight(monster1.strength);
+                        strength = monster1.strength;
                         break;
                     case monster2.name:
                         personnage === null || personnage === void 0 ? void 0 : personnage.fight(monster2.strength);
+                        strength = monster2.strength;
                         break;
                     case monster3.name:
                         personnage === null || personnage === void 0 ? void 0 : personnage.fight(monster3.strength);
+                        strength = monster3.strength;
                         break;
                 }
-                console.log(response.monster + " vient de t'infliger " + strength + " points de degats !");
+                console.log(response.monster + " just inflicted on you " + strength + " damage points !");
                 console.log((personnage === null || personnage === void 0 ? void 0 : personnage.name) + " il te reste " + (personnage === null || personnage === void 0 ? void 0 : personnage.life) + " points de vie !");
                 if (personnage && personnage.life < 0) {
-                    console.log(" tu est MORTTTTTTT !!!!");
+                    console.log("You are dead !!!!");
                 }
                 else {
                     checkDisponibility();
@@ -78,9 +82,26 @@ var fight = function () {
             });
         }
         else {
-            console.log("Hey " + (personnage === null || personnage === void 0 ? void 0 : personnage.name) + " tu es une merde !!!!");
+            restTimer();
         }
     }).catch(function (err) { return console.log(err); });
+};
+// function pour increase your life
+var restTimer = function () {
+    console.log("Hey " + (personnage === null || personnage === void 0 ? void 0 : personnage.name) + " do you want to rest now ?");
+    inquirer_1.default.prompt(ConfigConversation_1.configStop)
+        .then(function (response) {
+        if (response.rest) {
+            setTimeout(function () {
+                console.log(personnage === null || personnage === void 0 ? void 0 : personnage.rest(10));
+                restTimer();
+            }, 2000);
+        }
+        else {
+            fight();
+        }
+    })
+        .catch(function (error) { return console.log(error); });
 };
 inquirer_1.default.prompt(ConfigConversation_1.configStart)
     .then(function (answers) {

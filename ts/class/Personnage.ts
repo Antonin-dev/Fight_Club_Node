@@ -32,4 +32,10 @@ export class Personnage {
         this._life -= value;
     }
 
+    public rest (life: number) : string {
+        this._life = this._life + 10
+        const text : string = `tu as recuperer ${life} de vie tu as ${this._life} de santé`
+        return text;
+    }
+
 }
